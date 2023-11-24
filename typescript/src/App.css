@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.c-link {
+  @apply text-white
+  md:text-black
+  hover:text-red-500
+  transition
+  duration-500
+  ease-in;
+}
+
+.c-menu {
+  @apply fixed
+  z-20
+  top-0
+  left-0
+  w-full
+  h-screen
+  flex flex-col
+  justify-center
+  items-center
+  bg-gray-900 bg-opacity-90
+  md:bg-transparent
+  md:h-auto
+  md:flex-row
+  md:justify-between
+  md:static;
+} */
