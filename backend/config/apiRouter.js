@@ -3,6 +3,7 @@ const middlewareController = require("../controller/middlewareController");
 const User = require("../controller/userController");
 const Product = require("../controller/productController");
 const Cart = require("../controller/cartController");
+const imgUpload = require("../controller/uploadimg");
 
 var router = express.Router();
 
@@ -22,12 +23,10 @@ router.delete(
 router.post("/refreshToken", User.requestReFreshToken);
 router.post("/logout", middlewareController.verifyToken, User.userLogout);
 
-// router.post("/registerUser", User.registerUser);
-
 //product
-
 router.get("/product", Product.getAll);
 router.post("/postProduct", Product.postProduct);
+// router.post("/upload", imgUpload);
 router.put("/updateProduct", Product.updateProduct);
 router.delete("/deleteProduct/:id", Product.deleteProduct);
 

@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import httpProduct from "../utils/http";
+import http from "../utils/http";
 import { Products, Product } from "../types/product.type";
 
 export const getProducts = (page: number | string, limit: number | string) =>
-  httpProduct.get<Products>("product", {
+  http.get<Products>("product", {
     params: {
       _page: page,
       _limit: limit,
     },
   });
 export const getProduct = (id: number | string) =>
-  httpProduct.get<Products>(`product/${id}`);
+  http.get<Products>(`product/${id}`);
 
 export const addProduct = (product: Omit<Product, "id">) =>
-  httpProduct.post<Products>("/postproduct", product);
+  http.post<Products>("postProduct", product);
 
 export const deleteProduct = (id: number | string) =>
-  httpProduct.delete<{}>(`deleteProduct/${id}`);
+  http.delete<{}>(`deleteProduct/${id}`);

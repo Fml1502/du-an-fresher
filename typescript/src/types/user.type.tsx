@@ -1,8 +1,10 @@
 export interface User {
   id: number;
-  userName: string;
+  nameUser: string;
   passWord: string;
   email: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export type Users = Pick<User, "id" | "userName" | "passWord">[];
+export type Users = Pick<User, "id" | "nameUser" | "passWord" | "email">[];

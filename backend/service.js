@@ -17,23 +17,14 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(router);
-
+app.use("/product", express.static("storage/images"));
 // SET STORAGE
 // app.get("/", function (req, res) {
 //   res.sendFile(__dirname + "/index.html");
 // });
 
-//upload ảnh
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now());
-  },
-});
+// upload ảnh
 
-var upload = multer({ storage: storage });
 
 // app.post("/upload", upload.single("myFile"), (req, res, next) => {
 //   const file = req.file;

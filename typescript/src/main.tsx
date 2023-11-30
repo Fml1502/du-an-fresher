@@ -14,8 +14,8 @@ import SignUp from './components/SignUp/signUp.tsx';
 import ProductViews from './components/ProductView/productView.tsx'
 import Cart from './components/Cart/cart.tsx'
 import NewProduct from './components/ProductView/newProduct.tsx'
-// import store from './auth/store.tsx'
-// import { Provider } from 'react-redux';
+import store from './auth/store.tsx'
+import { Provider } from 'react-redux';
 import {
   QueryClient,
   QueryClientProvider,
@@ -31,24 +31,24 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path='/Home' element={<App />}></Route>
-          <Route path='/SignIn' element={<SignIn />}></Route>
-          <Route path='/SignUp' element={<SignUp />}></Route>
-          <Route path='/ProductView' element={<ProductViews />}></Route>
-          <Route path='/Cart' element={<Cart />}></Route>
-          <Route path='/newProduct' element={<NewProduct />}></Route>
+    <Provider store={store}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Routes>
+            <Route path='/Home' element={<App />}></Route>
+            <Route path='/SignIn' element={<SignIn />}></Route>
+            <Route path='/SignUp' element={<SignUp />}></Route>
+            <Route path='/ProductView' element={<ProductViews />}></Route>
+            <Route path='/Cart' element={<Cart />}></Route>
+            <Route path='/newProduct' element={<NewProduct />}></Route>
 
 
-        </Routes>
+          </Routes>
 
-      </QueryClientProvider>
+        </QueryClientProvider>
 
-    </BrowserRouter>
-    {/* <RouterProvider router={router} /> */}
-    {/* </Provider>, */}
+      </BrowserRouter>
+      {/* <RouterProvider router={router} /> */}
+    </Provider>,
   </React.StrictMode>
 )

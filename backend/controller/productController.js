@@ -58,7 +58,18 @@ const Product = {
   // },
 
   // Thêm dữ liệu
-  // postProduct: (req, res) => {
+  postProduct: (req, res) => {
+    console.log(req.body, "req");
+    db.Product.create(req.body)
+      .then((data) => {
+        res.json("them thanh cong");
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json("that bai vi ngai thanh cong");
+      });
+  },
+  // postProduct: (req, res, next) => {
   //   db.Product.create(req.body)
   //     .then((data) => {
   //       res.json("them thanh cong");
@@ -67,15 +78,6 @@ const Product = {
   //       res.status(500).json("that bai vi ngai thanh cong");
   //     });
   // },
-  postProduct: (req, res, next) => {
-    db.Product.create(req.body)
-      .then((data) => {
-        res.json("them thanh cong");
-      })
-      .catch((err) => {
-        res.status(500).json("that bai vi ngai thanh cong");
-      });
-  },
 
   //   Sửa dữ liệu
   updateProduct: (req, res) => {
@@ -124,7 +126,7 @@ db.render = (req, res, options) => {
       detail: product.detail,
     }));
   }
-  console.log(data);
+  // console.log(data, "data");
 
   // Thêm thông tin phân trang vào dữ liệu trước khi trả về
   const result = {

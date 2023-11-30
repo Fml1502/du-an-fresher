@@ -9,15 +9,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import { deleteProduct, getProducts } from './api/product.api';
 import { Products as ProductsType } from './types/product.type';
+import { useSelector } from 'react-redux';
 // import SignUp from './components/signUp'
 
 // const LIMIT = 10
-import imgDroduct from './components/ProductView/product.jpg';
+// import imgDroduct from './components/ProductView/product.jpg';
 // import { useQueryString } from './utils/utils';
 function App() {
 
+  const [user, setUser] = useState(null);
 
-
+  // const user = useSelector(useState => state.auth.login.currentUser)
 
   const queryClient = useQueryClient()
   // const queryString: { page?: string } = useQueryString()
@@ -67,7 +69,7 @@ function App() {
         </a></Link>
 
         {/* search bar */}
-        <div className='w-full max-w-xl relative flex'>
+        {/* <div className='w-full max-w-xl relative flex'>
           <span className='absolute left-4 top-3 text-lg text-gray-400 '>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -76,7 +78,19 @@ function App() {
           </span>
           <input type='text' className='w-full border border-red-600 border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none' placeholder='search' />
           <button className='bg-red-400 border-red-600 text-white px-8 rounded-r-md hover:bg-transparent hover:text-red-600 transition'>Search</button>
-        </div>
+        </div> */}
+        <form>
+          <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+          <div className="relative">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+              </svg>
+            </div>
+            <input type="search" id="search" className="block w-96 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required />
+            <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+          </div>
+        </form>
         {/* wish list */}
         <div className='flex items-center space-x-4'>
           <a href='#' className='text-center text-gray-700 hover:text-red-600 transition relative'>
@@ -106,8 +120,12 @@ function App() {
           </Link>
 
           {/* user */}
-          <Link to='/signIn'>
-            <a href='#' className='text-center text-gray-700 hover:text-red-600 transition relative'>
+          {user ? (
+            <>
+              <p className='text-orange-600'>Hi,<span >{user.nameUser}</span></p>
+              <Link to='http://localhost:3333/logout' className='navbar-out'>
+                Logout
+                {/* <a href='#' className='text-center text-gray-700 hover:text-red-600 transition relative'>
               <div className='text-2xl'>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -116,8 +134,26 @@ function App() {
 
               <div className='text-xs leading-3'>User</div>
 
-            </a>
-          </Link>
+            </a> */}
+              </Link>
+            </>
+          ) : (
+            <Link to='/signIn' className='navbar-login'>
+              Login
+              {/* <a href='#' className='text-center text-gray-700 hover:text-red-600 transition relative'>
+              <div className='text-2xl'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+
+              <div className='text-xs leading-3'>User</div>
+
+            </a> */}
+            </Link>
+
+          )}
+
 
         </div>
 
@@ -142,9 +178,9 @@ function App() {
             {/* single product */}
             <div className='bg-white shadow rounded overflow-hidden group'>
               {/* product img */}
-              <div className='relative'>
+              <div className='relative '>
                 {/* <img src={product.imgPr} className='w-full' /> */}
-                <img src={imgDroduct} className='w-full' />
+                <img src={product.imgPr} className='object-contain h-48 w-96 ' />
                 <div className='absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition'>
                   <a className='text-white text-lg w-9 h-8 rounded-full bg-red-600 flex items-center justify-center hover:bg-gray-800 trasition'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
